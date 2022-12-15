@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+p {
+    border: 1px solid green;
+
+}
+
+/* Desktop view*/
+@media (min-width: 992px) {
+    p {
+        width: 33%;
+    }
+}
+
+
+/* Tablet view*/
+
+
+/* Mobile view*/
