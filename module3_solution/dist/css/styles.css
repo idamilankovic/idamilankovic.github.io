@@ -1,6 +1,45 @@
 body {
     font-size: 16px;
-    color: #fff;
-    background-color: #61122f;
-    font-family: 'Oxygen', sans-serif;
+    color: rgb(22, 19, 19);
+    background-color: whitesmoke;
 }
+#header-nav {
+    background-color: grey;
+    border: 0;
+    border-radius: 0;
+}
+.navbar-brand h1 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: .75;
+    color: black;
+    font-weight: bold;
+    margin-left: 15px;
+}
+#nav-list {
+    background-color: beige;
+}
+#nav-list a {
+    font-size: 1.5em;
+    text-align: center;
+    color: black;
+}
+#nav-list a:hover {
+    background-color: antiquewhite;
+}
+.text-center h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+#chicken {
+    background-color: rgb(187, 163, 163);
+    height: 1000px;
+}
+#chicken-title {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
