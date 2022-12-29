@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-size: 16px;
     color: rgb(22, 19, 19);
@@ -33,13 +37,27 @@ body {
     font-weight: bold;
     margin-bottom: 35px;
 }
-#chicken {
-    background-color: rgb(187, 163, 163);
-    height: 1000px;
+#row {
+    width: 100%;
+    margin-top: 50px;
 }
-#chicken-title {
-    text-align: center;
-    font-size: 1.5em;
+#box {
     padding: 10px;
+    margin-bottom: 10px;
 }
-
+#text {
+    margin: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: rgb(224, 212, 212);
+    height:max-content;
+    overflow: hidden;
+}
+.text-center {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+@media (max-width:768) {
+    
+}
