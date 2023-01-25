@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="script.js"></script>
+        <title>Temperatura po gradovima</title>
+    </head>
+    <body>
+        <div>Prikaz temperature po gradovima</div>
+        <div>
+            <span>Odaberi grad:</span>
+            <select id="cityName" onchange="weather()">
+                <option value="-----">-----</option>
+                <option value="Zagreb">Zagreb</option>
+                <option value="London">London</option>
+                <option value="Boston">Boston</option>
+            </select>
+            <input id="content" type="text" value="" size="1"></input><span>&#8451;</span>
+        </div>
+        <div>
+            <span>Odaberi prikaz:</span>
+            <select id="action" onchange="weather()">
+                <option value="current">Current</option>
+                <option value="weekly_min">Weekly Minimum</option>
+                <option value="weekly_max">Weekly Maximum</option>
+                <option value="weekly_avg">Weekly Average</option>
+            </select>
+        </div>
+    </body>
+</html>
