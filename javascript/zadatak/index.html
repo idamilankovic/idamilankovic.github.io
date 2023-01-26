@@ -9,7 +9,7 @@
         <div>Prikaz temperature po gradovima</div>
         <div>
             <span>Odaberi grad:</span>
-            <select id="cityName" onchange="weather()">
+            <select id="cityName" onchange="getDropdownValues()">
                 <option value="-----">-----</option>
                 <option value="Zagreb">Zagreb</option>
                 <option value="London">London</option>
@@ -19,7 +19,7 @@
         </div>
         <div>
             <span>Odaberi prikaz:</span>
-            <select id="action" onchange="weather()">
+            <select id="action" onchange="getDropdownValues()">
                 <option value="current">Current</option>
                 <option value="weekly_min">Weekly Minimum</option>
                 <option value="weekly_max">Weekly Maximum</option>
