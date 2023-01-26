@@ -89,7 +89,7 @@ function getJson (city, startDate, endDate, apiKey, action) {
             return response
         }
         else {
-            console.log("error ${request.status}")
+            console.log(`error ${request.status}`)
         }
     };
 };
