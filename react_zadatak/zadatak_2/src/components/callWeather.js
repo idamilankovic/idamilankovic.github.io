@@ -15,9 +15,10 @@ function CallWeather(props) {
     }
   return (
     <div>
-        <Button variant="contained" onClick={() => getCurrentTemp(props.city)}>Show temp</Button>
-        {temp} 
+        <Button onClick={() => getCurrentTemp(props.city)}>Show temp</Button>
+        {temp}
     </div>
   )
 }
+
 export default CallWeather;

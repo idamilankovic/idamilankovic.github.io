@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import City from './components/city';
 
 function App() {
+
   return (
-    <div className="App">
-     <h1>hello</h1>
+    <div>
+      <h1>Odaberi grad za prikaz temperature:</h1>
+
+     <City />
+
     </div>
   );
 }
