@@ -1,7 +1,7 @@
 const cityList = [
-    "Zagreb", 
-    "London", 
-    "Amsterdam"
+    {id: 1, value: "Zagreb"},
+    {id: 2, value: "London"},
+    {id: 3, value: "Amsterdam"}
 ];
 
 export default cityList;
