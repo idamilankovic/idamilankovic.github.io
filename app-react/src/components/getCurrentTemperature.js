@@ -1,7 +1,8 @@
-import { Autocomplete, TextField, Select, MenuItem, Alert, Box} from '@mui/material';
+import { Autocomplete, TextField, Alert, Box, NativeSelect} from '@mui/material';
 import React, {useState, useEffect} from 'react';
-import cityList from './cityList';
 import Axios from 'axios';
+import cityList from './cityList';
+
 
 function GetCurrentTemp() {
 
@@ -13,17 +14,18 @@ function GetCurrentTemp() {
       return initialValue || "";
     }
     )
-
     const [city, setCity] = useState(() => {
       const initialValue = JSON.parse(localStorage.getItem("city"));
       return initialValue || "";
     }
     )
-
     const [temp, setTemp] = useState(null);
     const [textError, setTextError] = useState('')
-
-
+    const localMemoryListCity = JSON.parse(localStorage.getItem("listCity"))
+    const [listCity, setListCity] = useState(
+      localMemoryListCity != null ? localMemoryListCity : cityList
+    )
+    
     useEffect(() => {
       if (city === null) {
       }
@@ -33,7 +35,7 @@ function GetCurrentTemp() {
     }, [city, unit]);
 
     const handleCurrentTemp = (city, unit) => {
-      if (city !== "" && unit !== "") {
+      if (city !== "") {
       const apiKey = "40439c412414da357ad3df5b0e0cb2f0"
       Axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
         .then((response) => response.data)
@@ -51,19 +53,34 @@ function GetCurrentTemp() {
     }
   }
 
+  const handleIncrementCounter = (selectedItem) => {
+    const updateListCity = [...listCity];
+    const index = updateListCity.indexOf(selectedItem);
+    updateListCity[index].counter +=1;
+    updateListCity.sort(function(city1, city2) {
+      return city2.counter - city1.counter;
+    })
+    setListCity([...updateListCity]);
+    localStorage.setItem("listCity", JSON.stringify([...updateListCity]))
+  }
+
   return (
     <div>
         <Autocomplete
           disablePortal
           id="combo-box-demo"
-          options={Object.values(cityList).map((city) => city.value)}
+          options={
+            localMemoryListCity === null ? Object.values(listCity).map((city) => city.value) : 
+            Object.values(localMemoryListCity).map((city) => city.value)
+            }
           sx={{ width: 200 }} 
           value={JSON.parse(localStorage.getItem("city"))}
           onChange={(event, value) => {
             setCity(value);
-            localStorage.setItem("city", JSON.stringify(value))
-          }
-        }
+            localStorage.setItem("city", JSON.stringify(value));
+            const selectedObject = listCity.find(city => city.value === value)
+            handleIncrementCounter(selectedObject)
+          }}
           renderInput={(params) => <TextField {...params} label="Odaberi grad" />
           }
         />
@@ -71,17 +88,17 @@ function GetCurrentTemp() {
           <span>{city === null ? "" : temp}</span>
         </Box>
 
-        <Select
-          defaultValue={''} 
+        <NativeSelect
+          defaultValue={JSON.parse(localStorage.getItem("unit"))}
           onChange={(event, value) => { 
             setUnit(event.target.value);
             localStorage.setItem("unit", JSON.stringify(event.target.value));
           }
         }
-          value={JSON.parse(localStorage.getItem("unit"))}>
-            <MenuItem value={celsius}>&#8451;</MenuItem>
-            <MenuItem value={farenheit}>&#8457;</MenuItem>
-        </Select>
+        >
+            <option value={celsius}>&#8451;</option>
+            <option value={farenheit}>&#8457;</option>
+        </NativeSelect>
 
           <div>
             {(JSON.parse(localStorage.getItem("city")) === null || JSON.parse(localStorage.getItem("unit")) === null) ?
@@ -93,6 +110,7 @@ function GetCurrentTemp() {
             {textError === (500 || 502 || 503 || 504) ? 
             <Alert severity="error">Server trenutno nije dostupan. Pokušajte kasnije.</Alert> : "" }
           </div>
+          {}
     </div>
   )
 }
