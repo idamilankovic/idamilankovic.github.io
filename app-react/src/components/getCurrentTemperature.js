@@ -38,11 +38,14 @@ function GetCurrentTemp() {
       if (city !== "") {
       const apiKey = "40439c412414da357ad3df5b0e0cb2f0"
       Axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
-        .then((response) => response.data)
-        .then((json) => {
-          unit==="&#8451;" ? setTemp((json.main.temp - 273.15).toFixed(2)) : setTemp(((json.main.temp - 273.15)*1.8).toFixed(2))
-        }
-        )
+        .then((response) => {
+          unit==="&#8451;" ? setTemp((response.data.main.temp - 273.15).toFixed(2)) : setTemp(((response.data.main.temp - 273.15)*1.8).toFixed(2))
+        })
+        // .then((response) => response.data)
+        // .then((json) => {
+        //   unit==="&#8451;" ? setTemp((json.main.temp - 273.15).toFixed(2)) : setTemp(((json.main.temp - 273.15)*1.8).toFixed(2))
+        // }
+        // )
         .catch(function(error) {
           if (error.response) {
             setTextError(error.response.status);
